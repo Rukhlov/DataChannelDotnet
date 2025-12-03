@@ -1,11 +1,14 @@
-﻿namespace DataChannelDotnet.Bindings;
+﻿using System;
 
-public sealed class NativeTypeNameAttribute : Attribute
+namespace DataChannelDotnet.Bindings
 {
-    public NativeTypeNameAttribute(string name)
-    {
-        Name = name;
-    }
+	public sealed class NativeTypeNameAttribute : Attribute
+	{
+		public NativeTypeNameAttribute(string name)
+		{
+			Name = name;
+		}
 
-    public string Name { get; }
+		public string Name { get; }
+	}
 }

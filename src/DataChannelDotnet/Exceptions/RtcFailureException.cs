@@ -1,9 +1,10 @@
-namespace DataChannelDotnet.Exceptions;
-
-internal sealed class RtcFailureException : RtcException
+namespace DataChannelDotnet.Exceptions
 {
-    public RtcFailureException() : base("Unknown Rtc failure")
-    {
+	internal sealed class RtcFailureException : RtcException
+	{
+		public RtcFailureException() : base("Unknown Rtc failure")
+		{
 
-    }
+		}
+	}
 }

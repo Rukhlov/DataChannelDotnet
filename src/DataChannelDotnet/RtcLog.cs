@@ -1,44 +1,54 @@
+using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using DataChannelDotnet.Bindings;
+using DataChannelDotnet.Internal;
 
-namespace DataChannelDotnet;
-
-public delegate void RtcLogCallback(rtcLogLevel level, string message);
-
-public static class RtcLog
+namespace DataChannelDotnet
 {
-    private static RtcLogCallback? _currentCallback;
 
-    private static Lock _lock = new();
-    private static bool _initializeCalled;
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RtcLogCallback(rtcLogLevel level, string message);
 
-    public static void Initialize(rtcLogLevel level, RtcLogCallback callback)
-    {
-        using (_lock.EnterScope())
-        {
-            if (_initializeCalled)
-                return;
+	public static unsafe class RtcLog
+	{
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		private delegate void RtcLogCallbackNative(rtcLogLevel level, sbyte* message);
 
-            unsafe
-            {
-                _currentCallback = callback;
-                Rtc.rtcInitLogger(level, &StaticLogCallback);
-            }
+		private static RtcLogCallback? _currentCallback;
+		private static RtcLogCallbackNative? _nativeCallback;
 
-            _initializeCalled = true;
-        }
-    }
+		private static Lock _lock = new();
+		private static bool _initializeCalled;
 
-    public static void ChangeCallback(RtcLogCallback? callback)
-    {
-        _currentCallback = callback;
-    }
-    
-    [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-    private static unsafe void StaticLogCallback(rtcLogLevel level, sbyte* message)
-    {
-        RtcLogCallback? callback = _currentCallback;
-        callback?.Invoke(level, Marshal.PtrToStringAnsi((nint)message) ?? string.Empty);
-    }
+		public static void Initialize(rtcLogLevel level, RtcLogCallback callback)
+		{
+			using (_lock.EnterScope())
+			{
+				if (_initializeCalled)
+					return;
+
+				unsafe
+				{
+					_currentCallback = callback;
+					_nativeCallback = StaticLogCallback;
+					IntPtr callbackPtr = Marshal.GetFunctionPointerForDelegate(_nativeCallback);
+					Rtc.rtcInitLogger(level, (delegate* unmanaged[Cdecl]<rtcLogLevel, sbyte*, void>)callbackPtr);
+				}
+
+				_initializeCalled = true;
+			}
+		}
+
+		public static void ChangeCallback(RtcLogCallback? callback)
+		{
+			_currentCallback = callback;
+		}
+
+		private static unsafe void StaticLogCallback(rtcLogLevel level, sbyte* message)
+		{
+			RtcLogCallback? callback = _currentCallback;
+			callback?.Invoke(level, Utf8StringMarshaller.ConvertToManaged((byte*)message) ?? string.Empty);
+		}
+	}
 }

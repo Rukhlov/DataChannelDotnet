@@ -1,8 +1,9 @@
-﻿namespace DataChannelDotnet.Exceptions;
-
-internal sealed class RtcBufferTooSmallException : RtcException
+﻿namespace DataChannelDotnet.Exceptions
 {
-    public RtcBufferTooSmallException() : base("Buffer was too small")
-    {
-    }
+	internal sealed class RtcBufferTooSmallException : RtcException
+	{
+		public RtcBufferTooSmallException() : base("Buffer was too small")
+		{
+		}
+	}
 }

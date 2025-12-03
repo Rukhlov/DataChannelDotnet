@@ -1,8 +1,9 @@
-namespace DataChannelDotnet.Exceptions;
-
-internal sealed class RtcNotAvailableException : RtcException
+namespace DataChannelDotnet.Exceptions
 {
-    public RtcNotAvailableException() : base("Unavailable")
-    {
-    }
+	internal sealed class RtcNotAvailableException : RtcException
+	{
+		public RtcNotAvailableException() : base("Unavailable")
+		{
+		}
+	}
 }

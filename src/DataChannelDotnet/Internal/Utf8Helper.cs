@@ -1,8 +1,10 @@
-namespace DataChannelDotnet.Internal;
+using System;
 
-internal static unsafe class Utf8Helper
+namespace DataChannelDotnet.Internal
 {
-    public static int GetUtf8Chars(sbyte* str, Span<byte> buffer)
+    internal static unsafe class Utf8Helper
+    {
+        public static int GetUtf8Chars(sbyte* str, Span<byte> buffer)
     {
         if (str is null)
             return 0;
@@ -17,6 +19,7 @@ internal static unsafe class Utf8Helper
         }
 
         buffer[buffer.Length - 1] = 0;
-        return buffer.Length - 1;
+            return buffer.Length - 1;
+        }
     }
 }

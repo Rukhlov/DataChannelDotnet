@@ -1,7 +1,8 @@
-namespace DataChannelDotnet.Data;
-
-public sealed class RtcDescription
+namespace DataChannelDotnet.Data
 {
-    public required string Sdp { get; init; }
-    public required RtcDescriptionType Type { get; init; }
+    public sealed class RtcDescription
+    {
+        public string Sdp { get; set; }
+        public RtcDescriptionType Type { get; set; }
+    }
 }

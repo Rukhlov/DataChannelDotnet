@@ -1,7 +1,8 @@
-namespace DataChannelDotnet.Data;
-
-public sealed class RtcCandidatePair
+namespace DataChannelDotnet.Data
 {
-    public string? LocalCandidate { get; init; }
-    public string? RemoteCandidate { get; init; }
+    public sealed class RtcCandidatePair
+    {
+        public string LocalCandidate { get; set; }
+        public string RemoteCandidate { get; set; }
+    }
 }

@@ -1,11 +1,14 @@
-namespace DataChannelDotnet.Events;
+using System;
 
-public readonly ref struct RtcBinaryReceivedEventSafe
+namespace DataChannelDotnet.Events
 {
-    public ReadOnlySpan<byte> Data { get; }
+	public sealed class RtcBinaryReceivedEventSafe
+	{
+		public byte[] Data { get; }
 
-    internal RtcBinaryReceivedEventSafe(ReadOnlySpan<byte> data)
-    {
-        Data = data;
-    }
+		internal RtcBinaryReceivedEventSafe(byte[] data)
+		{
+			Data = data;
+		}
+	}
 }

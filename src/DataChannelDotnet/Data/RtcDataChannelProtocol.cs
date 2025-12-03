@@ -1,7 +1,8 @@
-namespace DataChannelDotnet.Data;
-
-public enum RtcDataChannelProtocol
+namespace DataChannelDotnet.Data
 {
-    Text,
-    Binary
+    public enum RtcDataChannelProtocol
+    {
+        Text,
+        Binary
+    }
 }

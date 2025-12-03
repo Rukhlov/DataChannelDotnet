@@ -1,10 +1,11 @@
-namespace DataChannelDotnet.Data;
-
-public enum RtcDescriptionType
+namespace DataChannelDotnet.Data
 {
-    Offer = 0,
-    Answer = 1,
-    PrAnswer = 2,
-    Rollback = 3,
-    Unknown = 4
+    public enum RtcDescriptionType
+    {
+        Offer = 0,
+        Answer = 1,
+        PrAnswer = 2,
+        Rollback = 3,
+        Unknown = 4
+    }
 }

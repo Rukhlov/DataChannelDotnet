@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <NoWarn>CS8632,CS8786,CS0618</NoWarn>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Title>Managed C# WebRtc library</Title>
         <Authors>ZetrocDev</Authors>
@@ -19,11 +19,12 @@
         <None Include="../../README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
-    <ItemGroup Condition=" '$(IsPackable)' != 'true' ">
+    <ItemGroup>
         <ProjectReference Include="..\DataChannelDotnet.Bindings\DataChannelDotnet.Bindings.csproj"/>
     </ItemGroup>
 
-    <ItemGroup Condition=" '$(IsPackable)' == 'true' ">
-        <PackageReference Include="DataChannelDotnet.Bindings" Version="[0.23.2]"/>
+    <ItemGroup>
+        <PackageReference Include="System.Memory" Version="4.5.5" />
+        <PackageReference Include="System.Buffers" Version="4.5.1" />
     </ItemGroup>
 </Project>

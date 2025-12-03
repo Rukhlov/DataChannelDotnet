@@ -1,9 +1,12 @@
-namespace DataChannelDotnet.Exceptions;
+using System;
 
-internal abstract class RtcException : Exception
+namespace DataChannelDotnet.Exceptions
 {
-    protected RtcException(string message) : base(message)
-    {
+	internal abstract class RtcException : Exception
+	{
+		protected RtcException(string message) : base(message)
+		{
 
-    }
+		}
+	}
 }

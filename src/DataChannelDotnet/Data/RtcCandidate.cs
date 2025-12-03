@@ -1,7 +1,8 @@
-namespace DataChannelDotnet.Data;
-
-public class RtcCandidate
+namespace DataChannelDotnet.Data
 {
-    public required string Content { get; init; }
-    public required string Mid { get; init; }
+    public class RtcCandidate
+    {
+        public string Content { get; set; }
+        public string Mid { get; set; }
+    }
 }

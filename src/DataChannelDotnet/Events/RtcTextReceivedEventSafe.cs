@@ -1,11 +1,12 @@
-namespace DataChannelDotnet.Events;
-
-public readonly ref struct RtcTextReceivedEventSafe
+namespace DataChannelDotnet.Events
 {
-    public string Text { get; }
+	public readonly struct RtcTextReceivedEventSafe
+	{
+		public string Text { get; }
 
-    public RtcTextReceivedEventSafe(string text)
-    {
-        Text = text;
-    }
+		public RtcTextReceivedEventSafe(string text)
+		{
+			Text = text;
+		}
+	}
 }

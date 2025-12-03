@@ -1,9 +1,10 @@
-namespace DataChannelDotnet.Exceptions;
-
-internal sealed class RtcInvalidArgumentException : RtcException
+namespace DataChannelDotnet.Exceptions
 {
-    public RtcInvalidArgumentException() : base("Invalid argument")
-    {
+	internal sealed class RtcInvalidArgumentException : RtcException
+	{
+		public RtcInvalidArgumentException() : base("Invalid argument")
+		{
 
-    }
+		}
+	}
 }

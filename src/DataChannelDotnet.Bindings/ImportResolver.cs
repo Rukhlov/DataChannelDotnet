@@ -9,11 +9,6 @@ namespace DataChannelDotnet.Bindings
 	{
 		private const string LibraryName = "datachannel";
 
-		static ImportResolver()
-		{
-			Init();
-		}
-
 		internal static void Init()
 		{
 			var assemblyDir = Path.GetDirectoryName(typeof(ImportResolver).Assembly.Location) ?? AppContext.BaseDirectory;
